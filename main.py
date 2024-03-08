@@ -23,7 +23,7 @@ def home():
         if user:
             session['userid'] = user[0]
             session['username'] = user[1]
-            return redirect(url_for('profile'))
+            return redirect(url_for('profile'))  # Redirect to profile page after successful login
         else:
             error = "Incorrect username or password. Please try again."
             return render_template('home.html', error=error)
