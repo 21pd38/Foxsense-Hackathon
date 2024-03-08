@@ -97,7 +97,6 @@ def register_item():
         description = request.form['description']
         price = request.form['price']
         dietary_info = request.form['dietary_info']
-
         try:
             mycursor.execute("INSERT INTO MenuItem (itemID, campusID, cafeID, itemName, description, price, dietaryInfo) VALUES (%s, %s, %s, %s, %s, %s, %s)", (item_id, campus_id, cafe_id, item_name, description, price, dietary_info))
             mydb.commit()
@@ -106,6 +105,26 @@ def register_item():
             error = "Error occurred while registering item."
             return render_template('register_item.html', error=error)
     return render_template('register_item.html')
+
+@app.route('/place_order', methods=['GET', 'POST'])
+def place_order():
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        campus_id = request.form['campus_id']
+        cafe_id = request.form['cafe_id']
+        item_ids = request.form['item_ids'] 
+
+        try:
+            sql = "INSERT INTO Order_Place (userID, campusID, cafeID, itemIDs) VALUES (%s, %s, %s, %s)"
+            mycursor.execute(sql, (user_id, campus_id, cafe_id, item_ids))
+            mydb.commit()
+
+            return redirect(url_for('home')) 
+        except mysql.connector.Error as e:
+            error = "Error occurred while placing the order."
+            return render_template('place_order.html', error=error)
+
+    return render_template('place_order.html')
 
 
 if __name__ == '__main__':

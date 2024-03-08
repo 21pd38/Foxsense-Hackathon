@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+</head>
+<body>
+    <h2>Place Order</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/place_order" method="post">
+        <label for="user_id">User ID:</label><br>
+        <input type="text" id="user_id" name="user_id" required><br>
+        <label for="campus_id">Campus ID:</label><br>
+        <input type="text" id="campus_id" name="campus_id" required><br>
+        <label for="cafe_id">Cafe ID:</label><br>
+        <input type="text" id="cafe_id" name="cafe_id" required><br>
+        <label for="item_ids">Item IDs (comma-separated):</label><br>
+        <input type="text" id="item_ids" name="item_ids" required><br>
+        <input type="submit" value="Place Order">
+    </form>
+    <a href="/home">Back to Home</a>
+</body>
+</html>
