@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from apscheduler.schedulers.background import BackgroundScheduler
-import time
 import mysql.connector
 
 app = Flask(__name__)
@@ -25,7 +24,7 @@ def home():
         if user:
             session['userid'] = user[0]
             session['username'] = user[1]
-            return redirect(url_for('profile'))  # Redirect to profile page after successful login
+            return redirect(url_for('profile'))
         else:
             error = "Incorrect username or password. Please try again."
             return render_template('home.html', error=error)
@@ -130,8 +129,9 @@ def place_order():
 
 scheduler = BackgroundScheduler()
 
-def transfer_order():
-    # Transfer orders from Order_Place to Preparing after 2 minutes
+
+'''
+def transfer_orderTOpreparing():
     mycursor.execute("SELECT * FROM Order_Place")
     orders = mycursor.fetchall()
     for order in orders:
@@ -143,12 +143,10 @@ def transfer_order():
         mycursor.execute("INSERT INTO Preparing (orderID, userID, campusID, cafeID, itemIDs) VALUES (%s, %s, %s, %s, %s)",
                          (order_id, user_id, campus_id, cafe_id, item_ids))
         mydb.commit()
-        # Delete order from Order_Place
         mycursor.execute("DELETE FROM Order_Place WHERE orderID = %s", (order_id,))
         mydb.commit()
 
-def transfer2_order():
-    # Transfer orders from Order_Place to Preparing after 2 minutes
+def transfer_preparingTOready():
     mycursor.execute("SELECT * FROM preparing")
     orders = mycursor.fetchall()
     for order in orders:
@@ -160,19 +158,36 @@ def transfer2_order():
         mycursor.execute("INSERT INTO ready_order (orderID, userID, campusID, cafeID, itemIDs) VALUES (%s, %s, %s, %s, %s)",
                          (order_id, user_id, campus_id, cafe_id, item_ids))
         mydb.commit()
-        # Delete order from Order_Place
         mycursor.execute("DELETE FROM preparing WHERE orderID = %s", (order_id,))
         mydb.commit()
+
+ scheduler.add_job(transfer_order, 'interval', minutes=1) 
+ scheduler.add_job(transfer2_order, 'interval', minutes=1)
+ scheduler.start() '''
+
+def transfer_order():
+    mycursor.execute("SELECT * FROM Order_Place")
+    orders = mycursor.fetchall()
+    for order in orders:
+        order_id = order[0]
+        user_id = order[1]
+        campus_id = order[2]
+        cafe_id = order[3]
+        item_ids = order[4]
+        mycursor.execute("INSERT INTO Preparing (orderID, userID, campusID, cafeID, itemIDs) VALUES (%s, %s, %s, %s, %s)",
+                         (order_id, user_id, campus_id, cafe_id, item_ids))
+        mydb.commit()
+        mycursor.execute("DELETE FROM Order_Place WHERE orderID = %s", (order_id,))
+        mydb.commit()
+
+scheduler.add_job(transfer_order, 'interval', minutes=2)
+scheduler.start() 
 
 @app.route('/menu_items_display')
 def menu_items_display():
     mycursor.execute("SELECT * FROM MenuItem")
     menu_items = mycursor.fetchall()
     return render_template('menu_items_display.html', menu_items=menu_items)
-
-scheduler.add_job(transfer_order, 'interval', minutes=1)
-scheduler.add_job(transfer2_order, 'interval', minutes=1) 
-scheduler.start()
 
 if __name__ == '__main__':
     app.run(debug=True)
