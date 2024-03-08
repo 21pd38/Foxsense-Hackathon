@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <h2>Signup</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/signup" method="post">
+        <label for="userid">User ID:</label><br>
+        <input type="text" id="userid" name="userid"><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="age">Age:</label><br>
+        <input type="text" id="age" name="age"><br>
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" name="department"><br>
+        <label for="salary">Salary:</label><br>
+        <input type="text" id="salary" name="salary"><br>
+        <input type="submit" value="Signup">
+    </form>
+    <a href="/">Back to login</a>
+</body>
+</html>
