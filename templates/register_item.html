@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Item</title>
+</head>
+<body>
+    <h2>Register New Item</h2>
+    <form action="/register_item" method="post">
+        <label for="item_id">Item ID:</label><br>
+        <input type="text" id="item_id" name="item_id"><br>
+        <label for="campus_id">Campus ID:</label><br>
+        <input type="text" id="campus_id" name="campus_id"><br>
+        <label for="cafe_id">Cafe ID:</label><br>
+        <input type="text" id="cafe_id" name="cafe_id"><br>
+        <label for="item_name">Item Name:</label><br>
+        <input type="text" id="item_name" name="item_name"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <label for="price">Price:</label><br>
+        <input type="text" id="price" name="price"><br>
+        <label for="dietary_info">Dietary Information:</label><br>
+        <input type="text" id="dietary_info" name="dietary_info"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <a href="/home">Back to Home</a>
+</body>
+</html>

@@ -10,13 +10,16 @@
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
-    <form action="/" method="post">
+    <form action="/home" method="post">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Login">
     </form>
-    <a href="/signup">Signup</a>
+    <a href="/signup">Signup</a><br>
+    <a href="/register_campus">Register Campus</a><br>
+    <a href="/register_cafe">Register Cafe</a><br>
+    <a href="/register_item">Register Item</a><br>
 </body>
 </html>

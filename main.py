@@ -57,5 +57,56 @@ def signup():
             return render_template('signup.html', error=error)
     return render_template('signup.html')
 
+@app.route('/register_campus', methods=['GET', 'POST'])
+def register_campus():
+    if request.method == 'POST':
+        campus_id = request.form['campus_id']
+        campus_name = request.form['campus_name']
+        try:
+            mycursor.execute("INSERT INTO Campus (campusID, name) VALUES (%s, %s)", (campus_id, campus_name))
+            mydb.commit()
+            return redirect(url_for('home'))
+        except mysql.connector.Error as e:
+            error = "Error occurred while registering campus."
+            return render_template('register_campus.html', error=error)
+    return render_template('register_campus.html')
+
+
+@app.route('/register_cafe', methods=['GET', 'POST'])
+def register_cafe():
+    if request.method == 'POST':
+        campus_id = request.form['campus_id']
+        cafe_id = request.form['cafe_id']
+        cafe_name = request.form['cafe_name']
+        try:
+            mycursor.execute("INSERT INTO Cafe (campusID, cafeID, name) VALUES (%s, %s, %s)", (campus_id, cafe_id, cafe_name))
+            mydb.commit()
+            return redirect(url_for('home'))
+        except mysql.connector.Error as e:
+            error = "Error occurred while registering cafe."
+            return render_template('register_cafe.html', error=error)
+    return render_template('register_cafe.html')
+
+@app.route('/register_item', methods=['GET', 'POST'])
+def register_item():
+    if request.method == 'POST':
+        item_id = request.form['item_id']
+        campus_id = request.form['campus_id']
+        cafe_id = request.form['cafe_id']
+        item_name = request.form['item_name']
+        description = request.form['description']
+        price = request.form['price']
+        dietary_info = request.form['dietary_info']
+
+        try:
+            mycursor.execute("INSERT INTO MenuItem (itemID, campusID, cafeID, itemName, description, price, dietaryInfo) VALUES (%s, %s, %s, %s, %s, %s, %s)", (item_id, campus_id, cafe_id, item_name, description, price, dietary_info))
+            mydb.commit()
+            return redirect(url_for('home'))
+        except mysql.connector.Error as e:
+            error = "Error occurred while registering item."
+            return render_template('register_item.html', error=error)
+    return render_template('register_item.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
