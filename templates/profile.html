@@ -4,10 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            margin: 0 auto;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome, {{ username }}</h2>
-    <p>User ID: {{ userid }}</p>
-    <a href="/place_order">Place Order</a><br>
+    <div class="container">
+        <h2>Welcome, {{ username }}</h2>
+        <p>User ID: {{ userid }}</p>
+        <a href="/place_order">Place Order</a><br>
+    </div>
 </body>
 </html>

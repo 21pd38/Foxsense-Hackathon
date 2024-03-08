@@ -4,27 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Signup</h2>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form action="/signup" method="post">
-        <label for="userid">User ID:</label><br>
-        <input type="text" id="userid" name="userid"><br>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <label for="age">Age:</label><br>
-        <input type="text" id="age" name="age"><br>
-        <label for="department">Department:</label><br>
-        <input type="text" id="department" name="department"><br>
-        <label for="salary">Salary:</label><br>
-        <input type="text" id="salary" name="salary"><br>
-        <input type="submit" value="Signup">
-    </form>
-    <a href="/">Back to login</a>
+    <div class="container">
+        <h2>Signup</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="/signup" method="post">
+            <label for="userid">User ID:</label><br>
+            <input type="text" id="userid" name="userid"><br>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <label for="age">Age:</label><br>
+            <input type="text" id="age" name="age"><br>
+            <label for="department">Department:</label><br>
+            <input type="text" id="department" name="department"><br>
+            <label for="salary">Salary:</label><br>
+            <input type="text" id="salary" name="salary"><br>
+            <input type="submit" value="Signup">
+        </form>
+        <div class="links">
+            <a href="/">Back to login</a>
+        </div>
+    </div>
 </body>
 </html>

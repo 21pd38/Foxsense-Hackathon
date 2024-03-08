@@ -4,23 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Place Order</h2>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form action="/place_order" method="post">
-        <label for="user_id">User ID:</label><br>
-        <input type="text" id="user_id" name="user_id" required><br>
-        <label for="campus_id">Campus ID:</label><br>
-        <input type="text" id="campus_id" name="campus_id" required><br>
-        <label for="cafe_id">Cafe ID:</label><br>
-        <input type="text" id="cafe_id" name="cafe_id" required><br>
-        <label for="item_ids">Item IDs (comma-separated):</label><br>
-        <input type="text" id="item_ids" name="item_ids" required><br>
-        <input type="submit" value="Place Order">
-    </form>
-    <a href="/home">Back to Home</a>
+    <div class="container">
+        <h2>Place Order</h2>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form action="/place_order" method="post">
+            <label for="user_id">User ID:</label><br>
+            <input type="text" id="user_id" name="user_id" required><br>
+            <label for="campus_id">Campus ID:</label><br>
+            <input type="text" id="campus_id" name="campus_id" required><br>
+            <label for="cafe_id">Cafe ID:</label><br>
+            <input type="text" id="cafe_id" name="cafe_id" required><br>
+            <label for="item_ids">Item IDs (comma-separated):</label><br>
+            <input type="text" id="item_ids" name="item_ids" required><br>
+            <input type="submit" value="Place Order">
+        </form>
+        <div class="links">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
 </body>
 </html>
