@@ -39,7 +39,6 @@
                 <td>{{ item.itemName }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.price }}</td>
-                <td>{% if item.image %}<img src="data:image/jpeg;base64,{{ item.image }}" alt="Item Image">{% endif %}</td>
             </tr>
             {% endfor %}
         </tbody>

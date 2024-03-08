@@ -10,34 +10,43 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            background-image: url("/static/food1.jpeg"); /* Background image from static folder */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
         }
         .container {
             max-width: 400px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: rgba(0, 0, 0, 0.5); /* Darkened background color */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
         h2 {
             margin-top: 0;
+            color: #00bcd4; /* Blue text color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         p {
             margin-bottom: 20px;
+            color: #fff; /* White text color */
         }
         a {
             display: block;
             text-decoration: none;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #00bcd4; /* Blue background color */
+            color: #181818; /* Dark text color */
             padding: 10px;
             border-radius: 5px;
             width: 200px;
             margin: 0 auto;
+            transition: background-color 0.3s ease;
         }
         a:hover {
-            background-color: #0056b3;
+            background-color: #0097a7; /* Darkened blue hover color */
         }
     </style>
 </head>
